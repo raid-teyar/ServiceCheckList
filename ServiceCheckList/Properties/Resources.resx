@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ckeck_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ckeck_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ckeck_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ckeck_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DeleteShortCut" xml:space="preserve">
+    <value>@ECHO OFF
+
+del "c:\users\%username%\desktop\Microsoft Edge.lnk"
+del "c:\users\public\desktop\Acrobat Reader DC.lnk"
+del "c:\users\public\desktop\Malwarebytes.lnk"
+del "c:\users\public\desktop\VLC media player.lnk"
+del "c:\users\public\desktop\AnyDesk.lnk"
+
+:: kill and restart explorer
+taskkill /f /im explorer.exe
+start explorer.exe</value>
+  </data>
+  <data name="failed_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\failed_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KillOpenProcess" xml:space="preserve">
+    <value>@ECHO OFF
+
+
+:: kill all open processes
+cd c:\windows\System32
+for /f "skip=3 tokens=1" %%i in ('TASKLIST /FI "USERNAME eq %userdomain%%username%" /FI "STATUS eq running"') do (
+if not "%%i"=="svchost.exe" (
+if not "%%i"=="cmd.exe" (
+if not "%%i"=="tasklist.exe" (
+if not "%%i"=="servicechecklist.exe" (
+taskkill /f /im "%%i"
+)
+)
+)
+)
+
+:: kill and restart explorer
+::taskkill /f /im explorer.exe
+start explorer.exe</value>
+  </data>
+  <data name="PowerSettings" xml:space="preserve">
+    <value>@echo off
+
+
+:: show my computer icon
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu /v {20D04FE0-3AEA-1069-A2D8-08002B30309D} /t REG_DWORD /d 0 /f
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel /v {20D04FE0-3AEA-1069-A2D8-08002B30309D} /t REG_DWORD /d 0 /f
+
+:: show user folder
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel /v {59031a47-3f72-44a7-89c5-5595fe6b30ee} /t REG_DWORD /d 0 /f
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu /v {59031a47-3f72-44a7-89c5-5595fe6b30ee} /t REG_DWORD /d 0 /f
+
+:: show all taskbar icons
+REG ADD "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer" /V EnableAutoTray /T REG_DWORD /D 0 /F
+
+:: remove people icon on taskbar
+REG ADD "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" /V PeopleBand /T REG_DWORD /D 0 /F
+
+:: hide cortana
+REG ADD "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /V SearchboxTaskbarMode /T REG_DWORD /D 1 /F
+
+:: power settings
+POWERCFG -SETACTIVE 381b4222-f694-41f0-9685-ff5bb260df2e
+POWERCFG -Change -monitor-timeout-ac 20
+POWERCFG -CHANGE -monitor-timeout-dc 20
+POWERCFG -CHANGE -disk-timeout-ac 0
+POWERCFG -CHANGE -disk-timeout-dc 0
+POWERCFG -CHANGE -standby-timeout-ac 0
+POWERCFG -CHANGE -standby-timeout-dc 0
+POWERCFG -CHANGE -hibernate-timeout-ac 0
+POWERCFG -CHANGE -hibernate-timeout-dc 0
+
+:: kill and restart explorer
+taskkill /f /im explorer.exe
+start explorer.exe</value>
+  </data>
+  <data name="CCleanerINI" xml:space="preserve">
+    <value>[Options]
+HomeScreen=1
+DefaultDetailedView=2
+BCD=0,
+FTU=18/10/2019|3|1
+GD=57407589-81ff-495c-9c45-0d38505fb6f5
+WipeFreeSpaceDrives=
+LatestICS=5.63.7540
+CookiesToSave=.avast.com|.ccleaner.com|.ccleanercloud.com|.piriform.com|facebook.com|google.com|twitter.com|www.google.com|yahoo.com
+RunICS=0
+Monitoring=0
+NewVersion=
+UpdateKey=10/18/2019 04:32:03 PM
+CheckTrialOffer=2
+(Cfg)TTL= 86400
+(Cfg)TTL-Spread= 43200
+(Cfg)GetIpmForTrial=1
+(Cfg)HealthCheck=0
+(Cfg)HealthCheckShowEvent=0
+(Cfg)QuickClean=1
+(Cfg)QuickCleanIpm=1
+(Cfg)SoftwareUpdater=1
+(Cfg)SoftwareUpdaterIpm=1
+(Cfg)ABTestingNames=|NPTZG7BPQB3GK7TPGA2DC
+(Cfg)ccst-prev-001=|II
+(Cfg)LastUpdate=10/18/2019 04:29:20 PM
+(App)Microsoft Edge - Internet History=False
+(App)Microsoft Edge - Cookies=False
+(App)Microsoft Edge - Download History=False
+(App)Microsoft Edge - Last Download Location=False
+(App)Microsoft Edge - Recently Typed URLs=False
+(App)History=False
+(App)Cookies=False
+(App)Recently Typed URLs=False
+(App)Windows Log Files=False
+(App)Windows Event Logs=True
+(App)Old Prefetch data=True
+(App)Menu Order Cache=True
+(App)Tray Notifications Cache=True
+(App)Window Size/Location Cache=True
+(App)Environment Path=True
+(App)User Assist History=False
+(App)Custom Folders=True
+(App)Wipe Free Space=False
+(App)Google Chrome - Internet History=False
+(App)Google Chrome - Cookies=False
+(App)Google Chrome - Download History=False
+(App)Google Chrome - Last Download Location=False
+ShowCleanWarning=False
+ShowGoogleChromeCleanWarning=False
+STS=MP3ZI2MWQPQS4CUDPTUYC5UIPF3ZI55URE8VEDIKJTBWUTB7GAGSWVCDKS8YG7BUBWFE2S4WKN8VCPJZGE4DGNBZGN3S4CUWI3JV4QBUF22DIDIK
+cmp_t=00-tips
+cmp_tv=101
+WINDOW_LEFT=558
+WINDOW_TOP=267
+WINDOW_WIDTH=1024
+WINDOW_HEIGHT=708
+WINDOW_MAX=0
+SystemMonitoringRunningNotification=0
+(App)Mozilla - Internet History=False
+(App)Mozilla - Cookies=False
+(App)Mozilla - Download History=False
+(App)Mozilla - Last Download Location=False
+PPC=8959E01C9C7164E873B6B28F667D64898941BC6B42936B8BFC15F93E4FC99CBF
+SystemMonitoring=0
+LastMonitoringNotificationTime=10/18/2019 05:09:35 PM
+LMN=2|3|0|0|0|0|1|0|0|0||||</value>
+  </data>
+  <data name="BiosVersion" xml:space="preserve">
+    <value>wmic bios get smbiosbiosversion</value>
+  </data>
+  <data name="CheckSSD" xml:space="preserve">
+    <value>Get-PhysicalDisk | Select FriendlyName, MediaType</value>
+  </data>
+  <data name="DiskCleanup" xml:space="preserve">
+    <value>c:\windows\SYSTEM32\cleanmgr.exe /dC:</value>
+  </data>
+  <data name="SerialNumber" xml:space="preserve">
+    <value>wmic bios get serialnumber</value>
+  </data>
+  <data name="CHKDSK" xml:space="preserve">
+    <value>echo y|chkdsk /r c:</value>
+  </data>
+  <data name="Drivers" xml:space="preserve">
+    <value>devmgmt.msc</value>
+  </data>
+  <data name="ComputerName" xml:space="preserve">
+    <value>hostname</value>
+  </data>
+  <data name="WindowsUpdates" xml:space="preserve">
+    <value>control update</value>
+  </data>
+</root>
