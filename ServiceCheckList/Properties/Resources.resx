@@ -268,6 +268,7 @@ LMN=2|3|0|0|0|0|1|0|0|0||||</value>
   </data>
   <data name="BiosVersion" xml:space="preserve">
     <value>wmic bios get smbiosbiosversion</value>
+    <comment>-*/</comment>
   </data>
   <data name="CheckSSD" xml:space="preserve">
     <value>Get-PhysicalDisk | Select FriendlyName, MediaType</value>

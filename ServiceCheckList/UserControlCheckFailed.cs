@@ -6,11 +6,14 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace ServiceCheckList
 {
     public partial class UserControlCheckFailed : UserControl
     {
+
+
         public UserControlCheckFailed()
         {
             InitializeComponent();
@@ -71,24 +74,34 @@ namespace ServiceCheckList
 
 
 
-        private void UserControlCheckFailed_Load(object sender, EventArgs e)
+        public void UserControlCheckFailed_Load(object sender, EventArgs e)
         {
             lblTaskName.Text = TaskName;
             UpdateColors();
 
             if (TaskName == "SERVICED")
             {
-                // checking if already serviced or not
-                if (Form1.dropBoxCount > 1)
+                Task.Run(() =>
                 {
-                    Status = 1;
-                    UpdateTaskStatus();
-                }
-                else
-                {
-                    Status = 2;
-                    UpdateTaskStatus();
-                }
+                    while (true)
+                    {
+                        if (Form1.dropBoxCount > 1)
+                        {
+                            Status = 1;
+                            UpdateTaskStatus();
+                        }
+                        else
+                        {
+                            Status = 2;
+                            UpdateTaskStatus();
+                        }
+                        
+                        if(Form1.IsLoaded)
+                            break;
+                        
+                        System.Threading.Thread.Sleep(1000);
+                    }
+                });
             }
         }
 

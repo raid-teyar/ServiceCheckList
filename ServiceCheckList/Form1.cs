@@ -34,6 +34,7 @@ namespace ServiceCheckList
         public static bool IsActivated { get; set; }
         public static List<Control> ControlsList = new List<Control>();
         public static int dropBoxCount = 0;
+        public static bool IsLoaded { get; set; } = false;
 
         public  Form1()
         {
@@ -86,7 +87,7 @@ namespace ServiceCheckList
                         .Skip(7)
                         .ToArray();
 
-                    BIOSVersion = string.Join(Environment.NewLine, lines);
+                    BIOSVersion = string.Join(Environment.NewLine, lines).Trim();
                 }
                 else
                 {
@@ -104,7 +105,7 @@ namespace ServiceCheckList
                         .Skip(7)
                         .ToArray();
 
-                    SerialNumber = string.Join(Environment.NewLine, lines);
+                    SerialNumber = string.Join(Environment.NewLine, lines).Trim();
                 }
                 else
                 {
@@ -364,7 +365,7 @@ namespace ServiceCheckList
         {
             try
             {
-                var allProcess = System.Diagnostics.Process.GetProcesses().ToList();
+                var allProcess = Process.GetProcesses().ToList();
                 foreach (Process proc in allProcess)
                 {
                     if (name.Contains(proc.ProcessName.ToLower()))
@@ -614,6 +615,7 @@ namespace ServiceCheckList
             }
 
             dropBoxCount = cbPrevChecklists.Items.Count;
+            IsLoaded = true;
         }
 
         public static void UpdateTaskChange(string TaskName, int Status)
@@ -1139,15 +1141,23 @@ namespace ServiceCheckList
             int drivers = 0;
             int activated = 0;
             int sevenzip = 0;
-            int selfhd = 0;
+            
             int chrome = 0;
             int office = 0;
             int datamerged = 0;
             int inteldu = 0;
-            int agentinstalled = 0;
-            //int newinstall = Data.NewInstall ? 1 : 0;
             int newinstall = LoadedTicket.NewInstall ? 1 : 0;
-
+            
+            // new fields
+            int euro = 0;
+            int agentinstalled = 0;
+            string cname = "";
+            string bv = "";
+            string mfg = "";
+            string model = "";
+            string sn = "";
+            //string key = "";
+            
             string password = "";
             string completed = "";
 
@@ -1215,7 +1225,6 @@ namespace ServiceCheckList
             {
             }
 
-            //try { defraggler = TaskList.Find(x => x.TaskName == "DEFRAGGLER").Status; } catch { }
             try
             {
                 malwarebytes = TaskList.Find(x => x.TaskName == "MALWAREBYTES").Status;
@@ -1346,7 +1355,7 @@ namespace ServiceCheckList
 
             try
             {
-                selfhd = TaskList.Find(x => x.TaskName == "EURO").Status;
+                euro = TaskList.Find(x => x.TaskName == "EURO").Status;
             }
             catch
             {
@@ -1375,6 +1384,14 @@ namespace ServiceCheckList
             catch
             {
             }
+
+            // setting new fields
+            cname = ComputerName;
+            bv = BIOSVersion;
+            mfg = MakeProp;
+            model = ModelProp;
+            sn = SerialNumber;
+            //key = KeyProp;
 
 
             if (PasswordChanged)
@@ -1412,24 +1429,27 @@ namespace ServiceCheckList
                 "&drivers=" + drivers +
                 "&activated=" + activated +
                 "&7zip=" + sevenzip +
-                //"&teamviewer_id=" + lblTeamViewerId.Text +
                 "&mac=" + macAddr +
                 "&note=" + LoadedTicket.Note.Text +
                 "&inteldu=" + inteldu +
                 "&chrome=" + chrome +
                 "&office=" + office +
-                "&selfhd=" + selfhd +
                 "&datamerged=" + datamerged +
                 "&newinstall=" + newinstall +
-                //"&agentinstalled=" + agentinstalled +
+                "&isa=" + agentinstalled +
+                "&euro=" + euro +
+                "&cname=" + cname +
+                "&bv=" + bv +
+                "&mfg=" + mfg +
+                "&mdl=" + model +
+                "&sn=" + sn +
                 "&ticket_id=" + tbTicketNo.Text + password + completed;
-
+            //"&key=" + key +
 
             // Process.Start("http://www.csbykp.com/tickets/link.php?" + data);
 
 
-            //data = "serviced=0&mri=0&dft=0&self=0&memtest=0&ssd=0&adw=0&ccleaner=0&defraggler=0&malwarebytes=0&chkdsk=1&tweaking=0&power=0&teamviewer=0&adobe=0&avg=1&vlc=0&sfc=0&updates=0&bios=1&reset=0&drivers=0&activated=0&7zip=0&teamviewer_id=979478529&mac=7085C27D7054&note=&ticket_id=9927&oldpass=&newpass=1123kenny";
-
+            //http://www.csbykp.com/tickets/link.php?serviced=2&mri=0&dft=0&self=0&memtest=0&ssd=1&adw=0&ccleaner=0&defraggler=0&malwarebytes=0&chkdsk=0&tweaking=0&power=0&teamviewer=0&adobe=0&avg=0&vlc=0&sfc=0&updates=0&bios=0&reset=0&drivers=0&activated=1&7zip=0&mac=125B5FB36E11&note=&inteldu=0&chrome=0&office=0&datamerged=0&newinstall=0&agentinstalled=1&euro=0&cname=ServiceCheckList&bv=1.19.0&mfg=Dell Inc.&model=Inspiron 3580&sn=2TVRTW2&ticket_id=15516
 
             string content = "";
             if (string.IsNullOrWhiteSpace(LoadedTicket.TicketNo))
