@@ -20,6 +20,7 @@ using ServiceCheckList.Properties;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
 using System.Xml;
+using System.Management;
 
 namespace ServiceCheckList
 {
@@ -36,7 +37,7 @@ namespace ServiceCheckList
         public static int dropBoxCount = 0;
         public static bool IsLoaded { get; set; } = false;
 
-        public  Form1()
+        public Form1()
         {
             InitializeComponent();
             var args = Environment.GetCommandLineArgs();
@@ -60,71 +61,37 @@ namespace ServiceCheckList
                 {
                     MessageBox.Show(r.Exception.ToString());
                 }
-                
+
                 Invoke(new Action(() =>
                 {
                     serialBox.Text = SerialNumber;
                     tbMake.Text = MakeProp;
                     tbModel.Text = ModelProp;
                 }));
-                
-            });
 
+            });
         }
 
         private async Task InitTask()
         {
             await Task.Run(() =>
             {
-                // getting bios version
-                string file = GetFileName("BiosVersion", Resources.BiosVersion);
-                if (File.Exists(file))
+                ManagementClass objInst = new ManagementClass("Win32_Bios");
+                
+                objInst.Get();
+                foreach (ManagementObject obj in objInst.GetInstances())
                 {
-                    string output = ExecuteCommand(file);
-                    // trimming the output
-                    string[] lines = output
-                        .Split(Environment.NewLine.ToCharArray())
-                        .Skip(7)
-                        .ToArray();
-
-                    BIOSVersion = string.Join(Environment.NewLine, lines).Trim();
+                    BIOSVersion = obj["SMBIOSBIOSVersion"].ToString();
                 }
-                else
-                {
-                    BIOSVersion = "Not Found";
-                }
-
-                // getting serial number
-                string file1 = GetFileName("SerialNumber", Resources.SerialNumber);
-                if (File.Exists(file1))
-                {
-                    string output = ExecuteCommand(file1);
-                    // trimming the output
-                    string[] lines = output
-                        .Split(Environment.NewLine.ToCharArray())
-                        .Skip(7)
-                        .ToArray();
-
-                    SerialNumber = string.Join(Environment.NewLine, lines).Trim();
-                }
-                else
-                {
-                    SerialNumber = "Not Found";
-                }
-
+                objInst.Dispose();
+                
                 // checking if the windows is activated
                 IsActivated = OsChecker.IsGenuineWindows();
-
-                // getting make and model of the computer
-                string output3 = PowerShellHandler.Command("(Get-WmiObject -Class:Win32_ComputerSystem).Manufacturer");
-                string output4 = PowerShellHandler.Command("(Get-WmiObject -Class:Win32_ComputerSystem).Model");
-                MakeProp = output3;
-                ModelProp = output4;
 
                 // setting Agent Installed
                 string output5 = PowerShellHandler.Command("Get-Service -Name 'ScreenConnect Client (fcee6fd16678952d)'");
                 List<Control> controls = GetAll(this, typeof(UserControlCheck)).ToList();
-                
+
                 foreach (Control control in controls)
                 {
                     UserControlCheck userControl = (UserControlCheck)control;
@@ -142,7 +109,7 @@ namespace ServiceCheckList
                         }
                     }
                 }
-                
+
                 // checking if the Os drive is of type SSD 
                 string output2 = PowerShellHandler.Command("Get-PhysicalDisk | Select FriendlyName, MediaType");
                 string trimmedString = GetLine(output2, 3);
@@ -166,20 +133,28 @@ namespace ServiceCheckList
                         }
                     }
                 }
+
+                objInst = new ManagementClass("Win32_ComputerSystem");
+                objInst.Get();
+
+                foreach (ManagementObject obj in objInst.GetInstances())
+                {
+                    ModelProp = obj["Model"].ToString();
+                    MakeProp = obj["Manufacturer"].ToString();
+                    ComputerName = obj["Name"].ToString();
+                }
+
+                objInst.Dispose();
+                objInst = new ManagementClass("win32_bios");
+                objInst.Get();
+                foreach (ManagementObject obj in objInst.GetInstances())
+                {
+                    SerialNumber = obj["SerialNumber"].ToString();
+                }
             });
 
-            // getting computer name
-            string file2 = GetFileName("ComputerName", Resources.ComputerName);
-            if (File.Exists(file2))
-            {
-                string output2 = ExecuteCommand(file2);
-                string[] lines = output2
-                    .Split(Environment.NewLine.ToCharArray())
-                    .Skip(4)
-                    .ToArray();
-                ComputerName = string.Join(Environment.NewLine, lines);
-            }
-            
+
+
         }
 
         // gets a line from a string
@@ -488,7 +463,7 @@ namespace ServiceCheckList
                             {
                                 try
                                 {
-                                    Invoke((MethodInvoker) (() =>
+                                    Invoke((MethodInvoker)(() =>
                                     {
                                         try
                                         {
@@ -1141,13 +1116,13 @@ namespace ServiceCheckList
             int drivers = 0;
             int activated = 0;
             int sevenzip = 0;
-            
+
             int chrome = 0;
             int office = 0;
             int datamerged = 0;
             int inteldu = 0;
             int newinstall = LoadedTicket.NewInstall ? 1 : 0;
-            
+
             // new fields
             int euro = 0;
             int agentinstalled = 0;
@@ -1157,7 +1132,7 @@ namespace ServiceCheckList
             string model = "";
             string sn = "";
             //string key = "";
-            
+
             string password = "";
             string completed = "";
 
@@ -1851,7 +1826,7 @@ namespace ServiceCheckList
         // opens the dxDiag window
         private void dxDiagDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new DxDiagDetails() {StartPosition = FormStartPosition.CenterParent}.ShowDialog(this);
+            new DxDiagDetails() { StartPosition = FormStartPosition.CenterParent }.ShowDialog(this);
         }
 
         // runs all .exe files that are in the app base directory
@@ -2176,7 +2151,7 @@ namespace ServiceCheckList
                 Thread t1 = new Thread(new ParameterizedThreadStart(DeleteApp));
                 //MessageBox.Show("Test");
                 t1.Start(new ThreadParameter()
-                    {ProcessName = Process.GetCurrentProcess().ProcessName, Path = Application.ExecutablePath});
+                { ProcessName = Process.GetCurrentProcess().ProcessName, Path = Application.ExecutablePath });
             }
 
             LogInfo("======================APP CLOSED======================");

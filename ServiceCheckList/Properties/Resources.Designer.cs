@@ -136,15 +136,6 @@ namespace ServiceCheckList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to hostname.
-        /// </summary>
-        internal static string ComputerName {
-            get {
-                return ResourceManager.GetString("ComputerName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to @ECHO OFF
         ///
         ///del &quot;c:\users\%username%\desktop\Microsoft Edge.lnk&quot;
@@ -232,15 +223,6 @@ namespace ServiceCheckList.Properties {
         internal static string PowerSettings {
             get {
                 return ResourceManager.GetString("PowerSettings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to wmic bios get serialnumber.
-        /// </summary>
-        internal static string SerialNumber {
-            get {
-                return ResourceManager.GetString("SerialNumber", resourceCulture);
             }
         }
         

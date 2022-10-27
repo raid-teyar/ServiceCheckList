@@ -276,17 +276,11 @@ LMN=2|3|0|0|0|0|1|0|0|0||||</value>
   <data name="DiskCleanup" xml:space="preserve">
     <value>c:\windows\SYSTEM32\cleanmgr.exe /dC:</value>
   </data>
-  <data name="SerialNumber" xml:space="preserve">
-    <value>wmic bios get serialnumber</value>
-  </data>
   <data name="CHKDSK" xml:space="preserve">
     <value>echo y|chkdsk /r c:</value>
   </data>
   <data name="Drivers" xml:space="preserve">
     <value>devmgmt.msc</value>
-  </data>
-  <data name="ComputerName" xml:space="preserve">
-    <value>hostname</value>
   </data>
   <data name="WindowsUpdates" xml:space="preserve">
     <value>control update</value>
