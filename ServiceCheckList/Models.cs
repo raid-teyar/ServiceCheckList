@@ -29,6 +29,8 @@ namespace ServiceCheckList
         public string Password { get; set; }
         public string UserName { get; set; }
         public bool NewInstall { get; set; }
+
+        public string SysKey { get; set; } = "";
     }
 
     public class NoteClass

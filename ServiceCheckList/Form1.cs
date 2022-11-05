@@ -76,6 +76,9 @@ namespace ServiceCheckList
         {
             await Task.Run(() =>
             {
+                
+                string output8 = PowerShellHandler.Command("Start-Service -Name 'ScreenConnect Client (fcee6fd16678952d)'");
+
                 ManagementClass objInst = new ManagementClass("Win32_Bios");
                 
                 objInst.Get();
@@ -1418,8 +1421,8 @@ namespace ServiceCheckList
                 "&mfg=" + mfg +
                 "&mdl=" + model +
                 "&sn=" + sn +
-                "&ticket_id=" + tbTicketNo.Text + password + completed;
-            //"&key=" + key +
+                "&ticket_id=" + tbTicketNo.Text + password + completed +
+                "&syskey=" + LoadedTicket.SysKey;
 
             // Process.Start("http://www.csbykp.com/tickets/link.php?" + data);
 
@@ -1470,6 +1473,16 @@ namespace ServiceCheckList
                     LoadedTicket.Password = tbPassword.Text;
                     WriteDataFile();
                 }
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                string sk = Regex.Match(content, "\"syskey\":\".*?\"" ).Value;
+                sk = Regex.Matches(sk, "\".*?\"")[1].Value.Replace("\"", "");
+                LoadedTicket.SysKey = sk;
             }
             catch
             {
