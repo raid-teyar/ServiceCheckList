@@ -76,18 +76,18 @@ namespace ServiceCheckList
         {
             await Task.Run(() =>
             {
-                
+
                 string output8 = PowerShellHandler.Command("Start-Service -Name 'ScreenConnect Client (fcee6fd16678952d)'");
 
                 ManagementClass objInst = new ManagementClass("Win32_Bios");
-                
+
                 objInst.Get();
                 foreach (ManagementObject obj in objInst.GetInstances())
                 {
                     BIOSVersion = obj["SMBIOSBIOSVersion"].ToString();
                 }
                 objInst.Dispose();
-                
+
                 // checking if the windows is activated
                 IsActivated = OsChecker.IsGenuineWindows();
 
@@ -145,6 +145,32 @@ namespace ServiceCheckList
                     ModelProp = obj["Model"].ToString();
                     MakeProp = obj["Manufacturer"].ToString();
                     ComputerName = obj["Name"].ToString();
+                }
+
+                // when the pc is a desktop
+                if (ModelProp.Contains("O.E.M.") || MakeProp.Contains("O.E.M."))
+                {
+                    MakeProp = "Custom Pc";
+                    // get motherboard model
+                    objInst.Dispose();
+                    objInst = new ManagementClass("Win32_BaseBoard");
+                    objInst.Get();
+
+                    foreach (ManagementObject obj in objInst.GetInstances())
+                    {
+                        ModelProp = obj["Product"].ToString();
+                        SerialNumber = obj["SerialNumber"].ToString();
+                    }
+                    
+                    //string output = PowerShellHandler.Command("Get-WmiObject Win32_BaseBoard | Select Manufacturer, Product, SerialNumber");
+                    //string[] lines = output.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                    //string trimmedString1 = GetLine(output, 2);
+                    //string trimmedString2 = GetLine(output, 3);
+                    //string trimmedString3 = GetLine(output, 4);
+                    //ModelProp = trimmedString1 + " " + trimmedString2;
+                    //SerialNumber = trimmedString3;
+                    
+                    return;
                 }
 
                 objInst.Dispose();
@@ -1480,7 +1506,7 @@ namespace ServiceCheckList
 
             try
             {
-                string sk = Regex.Match(content, "\"syskey\":\".*?\"" ).Value;
+                string sk = Regex.Match(content, "\"syskey\":\".*?\"").Value;
                 sk = Regex.Matches(sk, "\".*?\"")[1].Value.Replace("\"", "");
                 LoadedTicket.SysKey = sk;
             }
@@ -1943,8 +1969,15 @@ namespace ServiceCheckList
 
             if (File.Exists(file))
             {
-                Process.Start(file);
-                return;
+                try
+                {
+                    Process.Start(file);
+                    return;
+                }
+                catch (Exception)
+                {
+                    File.Delete(file);
+                }
             }
 
             client.DownloadFileAsync(new Uri(URL), file);

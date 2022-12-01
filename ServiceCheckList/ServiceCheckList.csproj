@@ -26,9 +26,10 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>CSBYKP - Service Checklist</ProductName>
     <PublisherName>CSBYKP</PublisherName>
-    <ApplicationRevision>4</ApplicationRevision>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
+    <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -61,19 +62,20 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>csbkp1.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>4C2CA4D136B043E0079B57B4724B39AE68C3BFFA</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>A00F700A1A402F2B231B753FAC0D485CB088AF55</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>csbkp_pfx.pfx</ManifestKeyFile>
+    <ManifestKeyFile>1270882570.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetZone>LocalIntranet</TargetZone>
+    <TargetZone>Custom</TargetZone>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>false</GenerateManifests>
@@ -82,12 +84,24 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Management.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\Microsoft.Management.Infrastructure.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Management.Infrastructure.Native, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\Microsoft.Management.Infrastructure.Native.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
     <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.PowerShell.5.1.ReferenceAssemblies.1.0.0\lib\net461\System.Management.Automation.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
@@ -174,8 +188,7 @@
       <DependentUpon>UserControlCheckFailed.cs</DependentUpon>
     </EmbeddedResource>
     <Resource Include="app.manifest" />
-    <None Include="csbkp1.pfx" />
-    <None Include="csbkp_pfx.pfx" />
+    <None Include="1270882570.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -199,6 +212,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="csbykp.ico" />
+    <EmbeddedResource Include="Resources\Microsoft.Management.Infrastructure.dll" />
+    <EmbeddedResource Include="Resources\Microsoft.Management.Infrastructure.Native.dll" />
+    <EmbeddedResource Include="Resources\System.Management.Automation.dll" />
     <None Include="Resources\ckeck_white.png" />
   </ItemGroup>
   <ItemGroup>
@@ -225,4 +241,7 @@
     </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>signtool sign /f "C:\Users\rd07g\Desktop\ServiceCheckList 2.0\ServiceCheckList\1270882570.pfx" /p 123Kenny! /v "C:\Users\rd07g\Desktop\ServiceCheckList 2.0\ServiceCheckList\bin\Release\ServiceCheckList.exe"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
