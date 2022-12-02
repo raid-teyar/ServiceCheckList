@@ -150,7 +150,7 @@ namespace ServiceCheckList
                 // when the pc is a desktop
                 if (ModelProp.Contains("O.E.M.") || MakeProp.Contains("O.E.M."))
                 {
-                    MakeProp = "Custom Pc";
+                    MakeProp = "Custom PC";
                     // get motherboard model
                     objInst.Dispose();
                     objInst = new ManagementClass("Win32_BaseBoard");
@@ -210,7 +210,7 @@ namespace ServiceCheckList
 
         //string SizeToIncrease = "*MEMTEST*EURO*BIOS UPDATE*CCLEANER*MALWAREBYTES*TWEAKING TOOL*TEAMVIEWER*AVG FREE*SFC / SCANNOW*DRIVERS*7ZIP*INTEL DRIVER UTILITY*";
         string SizeToIncrease =
-            "*MEMTEST*EURO*CCLEANER*MALWAREBYTES*TWEAKING TOOL*INTEL DRIVER UTILITY*ADOBE READER*VLC PLAYER*WINDOWS UPDATES*RESET BROWSERS*ACTIVATED*AGENT INSTALLED*";
+            "*MEMTEST*EURO*CCLEANER*MALWAREBYTES*TWEAKING TOOL*ADOBE READER*VLC PLAYER*WINDOWS UPDATES*RESET BROWSERS*ACTIVATED*DATA MERGED*";
 
         string SizeToDecrease = "*MRI*SELF*";
 
@@ -219,15 +219,15 @@ namespace ServiceCheckList
             //"SERVICED", "MRI", "SELF", "DFT", "SSD", "MEMTEST", "ADWCLEANER", "CCLEANER", "DEFRAGGLER", "MALWAREBYTES", "CHKDSK", "TWEAKING TOOL", "POWER SETTINGS", "TEAMVIEWER", "ADOBE READER", "AVG FREE", "VLC PLAYER", "SFC / SCANNOW", "WINDOWS UPDATES", "BIOS UPDATE", "RESET BROWSERS", "DRIVERS", "ACTIVATED", "7ZIP"
             "SERVICED", "MRI", "MEMTEST", "DFT", "SSD", "SELF", "EURO", "ADWCLEANER", "CCLEANER",
             "INTEL DRIVER UTILITY", "MALWAREBYTES", "CHKDSK", "TWEAKING TOOL",
-            "POWER SETTINGS", "ADOBE READER", "AVG FREE", "VLC PLAYER", "SFC / SCANNOW", "WINDOWS UPDATES",
-            "BIOS UPDATE", "RESET BROWSERS", "DRIVERS", "ACTIVATED", "7ZIP", "AGENT INSTALLED"
+            "POWER SETTINGS", "ADOBE READER", "AVG FREE", "VLC PLAYER", "7ZIP",  "WINDOWS UPDATES",
+            "BIOS UPDATE", "RESET BROWSERS", "DRIVERS", "ACTIVATED", "AGENT INSTALLED"
         };
 
         List<string> NamesListNewInstall = new List<string>()
         {
-            "SERVICED", "MRI", "MEMTEST", "DFT", "SSD", "SELF", "EURO", "POWER SETTINGS", "CCLEANER", "ADOBE READER",
-            "MALWAREBYTES", "VLC PLAYER", "WINDOWS UPDATES", "AVG FREE", "GOOGLE CHROME", "BIOS UPDATE",
-            "MICROSOFT OFFICE", "DRIVERS", "ACTIVATED", "7ZIP", "DATA MERGED", "INTEL DRIVER UTILITY"
+            "SERVICED", "MRI", "MEMTEST", "DFT", "SSD", "SELF", "EURO", "POWER SETTINGS", "CCLEANER", "INTEL DRIVER UTILITY", 
+            "MALWAREBYTES",  "AVG FREE","ADOBE READER","BIOS UPDATE","VLC PLAYER", "GOOGLE CHROME", "WINDOWS UPDATES", 
+            "MICROSOFT OFFICE","ACTIVATED", "DRIVERS", "DATA MERGED",  "7ZIP", "AGENT INSTALLED"
 
 //                "POWER SETTINGS"
 //,"ADOBE READER"
